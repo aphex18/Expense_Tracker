@@ -20,7 +20,7 @@ A basic **Expense Tracker** web application built with **Django**, **MySQL** (WA
 
 1. **Clone the Repository**
 
-    git clone https://github.com/aphex18/Expense_Tracker.git
+    git clone https://github.com/aphex18/Expense_Tracker.git  
     cd Expense_Tracker
 
 
