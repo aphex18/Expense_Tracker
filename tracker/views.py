@@ -8,7 +8,7 @@ def index(request):
         description = request.POST.get('description')
         amount = request.POST.get('amount')
         current_balance, _ = CurrentBalance.objects.get_or_create(id = 1)
-         if amount == '' or float(amount) == 0:
+        if amount == '' or float(amount) == 0:
             messages.error(request, "Amount cannot be zero or empty")
             return redirect('/')
         if float(amount) < 0:
