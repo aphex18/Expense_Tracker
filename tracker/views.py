@@ -8,13 +8,14 @@ def index(request):
         description = request.POST.get('description')
         amount = request.POST.get('amount')
         current_balance, _ = CurrentBalance.objects.get_or_create(id = 1)
+         if amount == '' or float(amount) == 0:
+            messages.error(request, "Amount cannot be zero or empty")
+            return redirect('/')
         if float(amount) < 0:
             expense_type = 'DEBIT'
         else:
             expense_type = 'CREDIT'
-        if float(amount) == 0:
-            messages.error(request, "Amount cannot be zero.")
-            return redirect('/')
+       
         tracking_history = TrackingHistory.objects.create(
             current_balance=current_balance,
             amount=amount,
