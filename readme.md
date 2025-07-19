@@ -20,8 +20,8 @@ A basic **Expense Tracker** web application built with **Django**, **MySQL** (WA
 
 1. **Clone the Repository**
 
-git clone https://github.com/aphex18/Expense_Tracker.git
-cd Expense_Tracker
+    git clone https://github.com/aphex18/Expense_Tracker.git
+    cd Expense_Tracker
 
 
 2. **Set Up the MySQL Database**
@@ -45,18 +45,18 @@ cd Expense_Tracker
 
 4. **Install Dependencies**
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 
 5. **Apply Migrations**
 
-python manage.py makemigrations
-python manage.py migrate
+    python manage.py makemigrations
+    python manage.py migrate
 
 
 6. **Start the Development Server**
 
-python manage.py runserver
+    python manage.py runserver
 
 - Open your browser and go to `http://localhost:8000`
 
