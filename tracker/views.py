@@ -61,8 +61,8 @@ def index(request):
     if request.method == 'POST':
         description = request.POST.get('description')
         amount = request.POST.get('amount')
-        current_balance, _ = CurrentBalance.objects.get_or_create(id = 1)
-        if amount == '' or float(amount) == 0:
+        current_balance, _ = CurrentBalance.objects.get_or_create(user = request.user)
+        if not amount or float(amount) == 0:
             messages.error(request, "Amount cannot be zero or empty.")
             return redirect('/')
         if float(amount) < 0:
@@ -72,6 +72,7 @@ def index(request):
        
         tracking_history = TrackingHistory.objects.create(
             current_balance=current_balance,
+            user=request.user,
             amount=amount,
             expense_type=expense_type,
             description=description
@@ -80,15 +81,11 @@ def index(request):
         current_balance.save()
         # print(f"Description: {description}, Amount: {amount}") # Debugging line to check form data coming or not
         return redirect('/')
-    income = 0
-    expense = 0
-    for transaction in TrackingHistory.objects.all():
-        if transaction.expense_type == 'CREDIT':
-            income += transaction.amount
-        else:
-            expense += transaction.amount
-    current_balance, _ = CurrentBalance.objects.get_or_create(id = 1)
-    context = {'transactions': TrackingHistory.objects.all(),
+    transactions = TrackingHistory.objects.filter(user=request.user).order_by('-created_at')
+    income = sum(t.amount for t in transactions if t.expense_type == 'CREDIT')
+    expense = sum(t.amount for t in transactions if t.expense_type == 'DEBIT')
+    current_balance, _ = CurrentBalance.objects.get_or_create(user=request.user)
+    context = {'transactions': transactions,
                'current_balance' : current_balance,
                'income': income,
                'expense': expense
@@ -98,11 +95,10 @@ def index(request):
 @login_required(login_url="login_view2") # requires login to access the delete_transaction view
 
 def delete_transaction(request, id):
-    tracking_history = TrackingHistory.objects.filter(id = id)
-    if tracking_history.exists():
-            current_balance, _ = CurrentBalance.objects.get_or_create(id = 1)
-            tracking_history = tracking_history.first()
+    tracking_history = TrackingHistory.objects.filter(id = id, user=request.user).first()
+    if tracking_history:
+            current_balance = CurrentBalance.objects.get(user=request.user)
             current_balance.current_balance -= tracking_history.amount
             current_balance.save()
-    tracking_history.delete()
+            tracking_history.delete()
     return redirect('/')

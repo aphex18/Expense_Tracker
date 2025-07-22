@@ -4,12 +4,14 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class CurrentBalance(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
     current_balance = models.FloatField(default=0.0)
 
     def __str__(self):
         return f"Current Balance: {self.current_balance}"
 
 class TrackingHistory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null =True)
     current_balance = models.ForeignKey(CurrentBalance, on_delete=models.CASCADE, editable=False)
     amount = models.FloatField()
     expense_type = models.CharField(choices=(('CREDIT', 'Credit'), ('DEBIT', 'Debit')), max_length=6)
