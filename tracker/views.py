@@ -61,9 +61,15 @@ def index(request):
     if request.method == 'POST':
         description = request.POST.get('description')
         amount = request.POST.get('amount')
+<<<<<<< HEAD
         current_balance, _ = CurrentBalance.objects.get_or_create(user = request.user)
         if not amount or float(amount) == 0:
             messages.error(request, "Amount cannot be zero or empty.")
+=======
+        current_balance, _ = CurrentBalance.objects.get_or_create(id = 1)
+        if amount == '' or float(amount) == 0:
+            messages.error(request, "Amount cannot be zero or empty")
+>>>>>>> b5f98c8311eca5b159c7166be8847b64c01635ca
             return redirect('/')
         if float(amount) < 0:
             expense_type = 'DEBIT'
@@ -100,5 +106,10 @@ def delete_transaction(request, id):
             current_balance = CurrentBalance.objects.get(user=request.user)
             current_balance.current_balance -= tracking_history.amount
             current_balance.save()
+<<<<<<< HEAD
             tracking_history.delete()
     return redirect('/')
+=======
+    tracking_history.delete()
+    return redirect('/')
+>>>>>>> b5f98c8311eca5b159c7166be8847b64c01635ca
