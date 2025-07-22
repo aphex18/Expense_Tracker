@@ -22,7 +22,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', include('tracker.urls')),  # Include URLs from the tracker app
-    path('admin/', admin.site.urls),
+    path('site-admin-view/', admin.site.urls),
 ]
 
 
