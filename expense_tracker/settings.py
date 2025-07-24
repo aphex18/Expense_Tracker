@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG") == "False"
+DEBUG = os.getenv("DEBUG", "False") == "True" # Convert DEBUG to boolean
 
 ALLOWED_HOSTS = ['*']  # Allow all hosts for development; change in production
 
