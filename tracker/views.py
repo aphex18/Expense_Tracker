@@ -33,7 +33,6 @@ def register_view(request):
         password = request.POST.get('password')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-
         user = User.objects.filter(username = username)
         if user.exists():
             messages.error(request, "Username is already taken") 
@@ -43,7 +42,7 @@ def register_view(request):
             username = username,
             first_name = first_name,
             last_name = last_name,
-            password = password
+            password = password,
         )
         user.save()
         messages.success(request, "Account created") 
@@ -55,7 +54,7 @@ def logout_view(request):
     return redirect('/login/')
 
 
-@login_required(login_url="login_view2") # requires login to access the index view
+@login_required(login_url="login_view") # requires login to access the index view
 
 def index(request):
     if request.method == 'POST':
@@ -92,7 +91,7 @@ def index(request):
                }
     return render(request, 'index.html', context)
 
-@login_required(login_url="login_view2") # requires login to access the delete_transaction view
+@login_required(login_url="login_view") # requires login to access the delete_transaction view
 
 def delete_transaction(request, id):
     tracking_history = TrackingHistory.objects.filter(id = id, user=request.user).first()
