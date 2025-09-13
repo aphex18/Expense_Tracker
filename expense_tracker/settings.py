@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # DEBUG = True // true in development false in production
 ALLOWED_HOSTS = [ "expense-tracker-j6ud.onrender.com",
     "localhost","expense-tracker-j6ud.onrender.com"]  # Allow all hosts for development; change in production
@@ -92,7 +92,7 @@ DATABASES = {
         'HOST': os.getenv("DB_HOST", "127.0.0.1"),
         'PORT': os.getenv("DB_PORT", "3306"),
     }
-    
+
 }
 
 # this is database configuration using MySQL
