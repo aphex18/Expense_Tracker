@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+import dj_database_url
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -27,10 +28,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# DEBUG = True
 # DEBUG = True // true in development false in production
-ALLOWED_HOSTS = [ "expense-tracker-j6ud.onrender.com",
-    "localhost","expense-tracker-j6ud.onrender.com"]  # Allow all hosts for development; change in production
-
+ # Allow all hosts for development; change in production
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+# "expense-tracker-j6ud.onrender.com", "localhost"
 
 # Application definition
 
@@ -85,17 +87,19 @@ WSGI_APPLICATION = 'expense_tracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql',  #mysql for myql
         'NAME': os.getenv("DB_NAME"),
         'USER': os.getenv("DB_USER"),
         'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT", "5432"),
+        'PORT': os.getenv("DB_PORT", "5433"), #5432
     }
 
 }
 
-# this is database configuration using MySQL
+DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL")) # type: ignore
+
+# this is database configuration using postgres // use it in local not for deployment
 # --------------------------------------------------------------------------------
 
 
