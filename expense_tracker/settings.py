@@ -31,7 +31,7 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # DEBUG = True
 # DEBUG = True // true in development false in production
  # Allow all hosts for development; change in production
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ') #type: ignore
 # "expense-tracker-j6ud.onrender.com", "localhost"
 
 # Application definition
