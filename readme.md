@@ -19,17 +19,17 @@ This project is ideal for **new developers** exploring **full-stack development*
   Displays current balance, total income, and total expenses.
 
 - 🗄️ **Database Integration**  
-  Supports **MySQL** (with WAMP) and **SQLite** for persistent data storage.
+  Supports **POSTGRES** (with render) and **SQLite** for persistent data storage.
 
 ---
 
 ## 🧰 Technology Stack
 
-| Layer     | Technology             |
-|-----------|------------------------|
-| Backend   | Django (Python)        |
-| Database  | MySQL (WAMP) / SQLite  |
-| Frontend  | HTML, CSS, JavaScript  |
+| Layer     | Technology                         |
+|-----------|------------------------------------|
+| Backend   | Django (Python)                    |
+| Database  | Postgres (render) / MySql / SQLite |
+| Frontend  | HTML, CSS (bootstrap), JavaScript  |
 
 ---
 
@@ -38,7 +38,7 @@ This project is ideal for **new developers** exploring **full-stack development*
 ### ✅ Prerequisites
 
 - Python 3.6+
-- MySQL Server (WAMP recommended) or use SQLite (default)
+- Postgres (render) # for deployment purpose //  MySQL Server / MySql using WAMP / Postgres /  SQLite (default) can also be used
 - Git
 
 ---
@@ -63,7 +63,7 @@ cd Expense_Tracker
 ```python
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'expense_tracker',
         'USER': 'your_mysql_user',
         'PASSWORD': 'your_mysql_password',
@@ -71,6 +71,10 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL")) # to connect postgres (render)
+
+
 ```
 
 **For SQLite (default & no config needed):**  
@@ -174,3 +178,28 @@ This Expense Tracker is a **solid first step into full-stack development**, teac
 
 ---
 
+## Deployment Steps
+- For simplr deployment use reder's postgress create db on render and use externnal link in settings.py(steps given in settings.py)
+- Also connect your github in render to access repo
+- So, to depoy start with new web service
+- Connet the repo and start
+- Everything will be same
+- In Build Command use  => pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput
+- In Start Command use => gunicorn expense_tracker.wsgi:application --bind 0.0.0.0:$PORT --workers 3
+- Start the Deployment
+- In left Sidebar
+- In environment add,
+      ALLOWED_HOSTS = your_render_domain that render will give you when deploy
+      DATABASE_URL = use_render_internal_url you can get when you create a postgres db in render
+      DEBUG = False # in production change it to True when error occured while deploying to check the error, once error are resolved again change # back to False
+      SECRET_KEY = you_will_get it when you create djano project you get it by deafult in settings // or you can use your key
+- Now wait until it deploy or at top given deploy select on deploy last commit
+
+
+
+## Future Plans
+- Improve the project by adding more features.
+- Optimize performance and fix any existing bugs.
+- Implement user authentication enhancements, including email OTP login and password reset functionality.
+- Explore integration with [related technology or framework].
+- Learn and implement best practices for scalability and maintainability.

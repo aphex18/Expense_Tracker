@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'expense_tracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  #mysql for myql
+        'ENGINE': 'django.db.backends.postgresql',  #mysql for myql in place of postgressql
         'NAME': os.getenv("DB_NAME"),
         'USER': os.getenv("DB_USER"),
         'PASSWORD': os.getenv("DB_PASSWORD"),
@@ -138,7 +138,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-
+# these static structure to build your staic files
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
