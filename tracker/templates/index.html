@@ -1,28 +1,17 @@
 {% extends "base.html"%}
 {% load static %}
 {% block start %}
-<h1 style="font-size: 38px"><b>Expense Tracker</b></h1>
-<aside style="position: absolute; top: 250px; left: 25px;
-              transition: background-color 0.2s ease;">
-  <a class="btn" href="{% url 'logout_view' %}" style="text-decoration: none; background-color: #a79a63;">Logout</a>
-</aside>
- <div style="
-    font-family: 'Segoe UI', 'Arial', sans-serif;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 1.5rem 2rem;
-    background: linear-gradient(145deg, #e0dfdb, #fdf6dd);
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(222, 184, 135, 0.5);
-    border: 1px solid #f1e3c4;
-    color: #333;
-    min-width: 280px;
-  ">
-    <h3 style="margin-top: 0; color: #6a4e28;">Expense Tracker Dashboard</h3>
+
+<!-- Integrated Dashboard with Logout -->
+<div class="dashboard-card">
+  <div class="dashboard-content">
+    <h3>Expense Tracker Dashboard</h3>
     <p>Welcome, <strong>{{ request.user.username }}</strong>!</p>
     <p>Name: <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong></p>
   </div>
+  <a class="logout-btn" href="{% url 'logout_view' %}">Logout</a>
+</div>
+
 <div class="container">
   <div class="header">
     <img src="https://i.ibb.co/jfScDTC/budget.png" alt="Expense Tracker" />
@@ -33,6 +22,7 @@
       </h2>
     </div>
   </div>
+  
   <div class="inc-exp-container">
     <div>
       <h4>Income</h4>
@@ -43,17 +33,15 @@
       <p id="money-minus" class="money minus">-₹{{expense}}</p>
     </div>
   </div>
+  
   <h3>History</h3>
-
   <ul id="list" class="list">
     {% for transaction in transactions %}
-
     <li class="{% if transaction.expense_type == 'DEBIT' %} minus {% else %} plus {% endif %}">
       {{transaction.description}} <span> {{transaction.amount}} </span>
       <a class="delete-btn" href="{% url 'delete_transaction' transaction.id %}">
         <i class="fas fa-trash-alt"></i></a>
     </li>
-
     {% endfor %}
   </ul>
 
@@ -72,10 +60,10 @@
     <button class="btn" type="submit">Add transaction</button>
   </form>
 </div>
+
 <!-- Notification -->
 <div class="notification-container" id="notification">
   <p>Please add a description and amount</p>
 </div>
-
 
 {% endblock %}
