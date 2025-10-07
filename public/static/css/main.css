@@ -211,19 +211,27 @@ input[type="number"] {
 .notification-container p {
   margin: 0;
 }
+/* Dashboard responsive - moves to top on mobile */
 @media (max-width: 768px) {
   body {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
   
   .header {
-    order: -1; /* Moves dashboard to top */
-    width: 90%;
-    max-width: 350px;
+    order: -1;
+    width: 100%;
+    max-width: 90%;
+    margin: 20px auto;
+    justify-content: center;
   }
   
   .container {
-    order: 1; /* Main content after dashboard */
+    order: 1;
+    width: 90%;
+    margin: 0 auto 30px;
   }
 }
 
@@ -231,7 +239,8 @@ input[type="number"] {
   .header {
     order: -1;
     width: 95%;
-    max-width: 350px;
+    max-width: 95%;
+    margin: 15px auto;
     flex-direction: column;
     gap: 15px;
   }
@@ -242,6 +251,8 @@ input[type="number"] {
   }
   
   .container {
+    order: 1;
     width: 95%;
+    margin: 0 auto 20px;
   }
 }
