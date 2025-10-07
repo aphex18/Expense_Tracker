@@ -24,74 +24,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   min-height: 100vh;
   margin: 0;
-  padding: 20px 0;
 }
 
-/* Integrated Dashboard Card */
-.dashboard-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 30px;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(145deg, #e0dfdb, #fdf6dd);
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(222, 184, 135, 0.5);
-  border: 1px solid #f1e3c4;
-  color: #333;
-  font-family: 'Segoe UI', 'Arial', sans-serif;
-}
-
-.dashboard-content h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #6a4e28;
-  border: none;
-  padding: 0;
-  font-size: 1.2rem;
-}
-
-.dashboard-content p {
-  margin: 5px 0;
-  font-size: 0.95rem;
-}
-
-.logout-btn {
-  background-color: #a79a63;
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-  box-shadow: var(--box-shadow);
-  font-size: 14px;
-}
-
-.logout-btn:hover {
-  background-color: #8b7f53;
-}
-
-/* Main content header */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 20px;
 }
 
 .header img {
   width: 4.5rem;
-  height: 4.5rem;
+  width: 4.5rem;
   opacity: 0.5;
-  flex-shrink: 0;
 }
 
 .balance-container {
@@ -100,7 +47,7 @@ body {
 }
 
 .container {
-  margin: 0 auto;
+  margin: 30px auto;
   width: 350px;
 }
 
@@ -263,122 +210,4 @@ input[type="number"] {
 
 .notification-container p {
   margin: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .dashboard-card {
-    max-width: 500px;
-  }
-  
-  .header {
-    max-width: 500px;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    padding: 15px 0;
-  }
-  
-  .dashboard-card {
-    width: 90%;
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-    padding: 1.2rem 1.5rem;
-  }
-  
-  .logout-btn {
-    align-self: stretch;
-    text-align: center;
-  }
-  
-  .header {
-    width: 90%;
-    max-width: 400px;
-    margin: 0 auto 20px;
-  }
-  
-  .container {
-    width: 90%;
-    max-width: 400px;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: 10px 0;
-  }
-  
-  .dashboard-card {
-    width: 95%;
-    padding: 1rem 1.2rem;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-content h3 {
-    font-size: 1.1rem;
-  }
-  
-  .dashboard-content p {
-    font-size: 0.9rem;
-  }
-  
-  .logout-btn {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-  
-  .header {
-    width: 95%;
-    flex-direction: column;
-    gap: 15px;
-    margin: 0 auto 20px;
-  }
-  
-  .header img {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
-  
-  .container {
-    width: 95%;
-  }
-  
-  .inc-exp-container {
-    padding: 15px;
-  }
-  
-  .money {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 320px) {
-  .dashboard-card {
-    padding: 0.8rem 1rem;
-  }
-  
-  .dashboard-content h3 {
-    font-size: 1rem;
-  }
-  
-  .logout-btn {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-  
-  .header {
-    gap: 10px;
-  }
-  
-  .header img {
-    width: 3rem;
-    height: 3rem;
-  }
-  
-  .balance {
-    font-size: 1.5rem;
-  }
 }
