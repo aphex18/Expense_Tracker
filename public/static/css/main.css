@@ -211,3 +211,37 @@ input[type="number"] {
 .notification-container p {
   margin: 0;
 }
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  
+  .header {
+    order: -1; /* Moves dashboard to top */
+    width: 90%;
+    max-width: 350px;
+  }
+  
+  .container {
+    order: 1; /* Main content after dashboard */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    order: -1;
+    width: 95%;
+    max-width: 350px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .header img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  
+  .container {
+    width: 95%;
+  }
+}
