@@ -33,12 +33,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  order: 1; /* Default order for desktop */
 }
 
 .header img {
   width: 4.5rem;
-  width: 4.5rem;
+  height: 4.5rem;
   opacity: 0.5;
+  flex-shrink: 0;
 }
 
 .balance-container {
@@ -49,6 +51,7 @@ body {
 .container {
   margin: 30px auto;
   width: 350px;
+  order: 2; /* Default order for desktop */
 }
 
 h1 {
@@ -211,38 +214,28 @@ input[type="number"] {
 .notification-container p {
   margin: 0;
 }
-/* Dashboard responsive - moves to top on mobile */
+
+/* Responsive: Dashboard moves to top on smaller screens */
 @media (max-width: 768px) {
-  body {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-  
   .header {
-    order: -1;
-    width: 100%;
+    order: -1; /* Moves dashboard to top */
     max-width: 90%;
     margin: 20px auto;
-    justify-content: center;
   }
   
   .container {
-    order: 1;
+    order: 1; /* Main content comes after dashboard */
     width: 90%;
-    margin: 0 auto 30px;
   }
 }
 
 @media (max-width: 480px) {
   .header {
-    order: -1;
-    width: 95%;
+    order: -1; /* Dashboard stays on top */
     max-width: 95%;
-    margin: 15px auto;
     flex-direction: column;
     gap: 15px;
+    margin: 15px auto;
   }
   
   .header img {
@@ -253,6 +246,5 @@ input[type="number"] {
   .container {
     order: 1;
     width: 95%;
-    margin: 0 auto 20px;
   }
 }
