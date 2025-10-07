@@ -211,19 +211,31 @@ input[type="number"] {
 .notification-container p {
   margin: 0;
 }
-/* Dashboard responsive for all devices */
+/* Dashboard responsive - prevents content overlap */
 
 /* Tablet Portrait - iPad (768px - 1024px) */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+  body {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+  
   .header {
     width: 85%;
     max-width: 400px;
-    margin: 20px auto;
+    margin: 0 auto 30px;
+    position: relative;
+    z-index: 10;
   }
   
   .container {
     width: 85%;
     max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 }
 
@@ -241,26 +253,48 @@ input[type="number"] {
 
 /* Mobile Landscape (481px - 767px) */
 @media screen and (min-width: 481px) and (max-width: 767px) {
+  body {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 15px 0;
+  }
+  
   .header {
     width: 90%;
     max-width: 350px;
-    margin: 15px auto;
+    margin: 0 auto 25px;
+    position: relative;
+    z-index: 10;
   }
   
   .container {
     width: 90%;
     max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 }
 
 /* Mobile Portrait - iPhone, Android (320px - 480px) */
 @media screen and (max-width: 480px) {
+  body {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 10px 0;
+  }
+  
   .header {
     width: 95%;
     max-width: 350px;
-    margin: 10px auto;
+    margin: 0 auto 20px;
     flex-direction: column;
     gap: 10px;
+    position: relative;
+    z-index: 10;
   }
   
   .header img {
@@ -270,7 +304,9 @@ input[type="number"] {
   
   .container {
     width: 95%;
-    margin: 10px auto;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
   
   .inc-exp-container {
@@ -286,7 +322,7 @@ input[type="number"] {
 @media screen and (max-width: 320px) {
   .header {
     width: 98%;
-    margin: 8px auto;
+    margin: 0 auto 15px;
     gap: 8px;
   }
   
@@ -297,7 +333,7 @@ input[type="number"] {
   
   .container {
     width: 98%;
-    margin: 8px auto;
+    margin: 0 auto;
   }
   
   h1 {
