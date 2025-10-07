@@ -19,7 +19,7 @@ This project is ideal for **new developers** exploring **full-stack development*
   Displays current balance, total income, and total expenses.
 
 - 🗄️ **Database Integration**  
-  Supports **POSTGRES** (with render) and **SQLite** for persistent data storage.
+  Supports **POSTGRES** (with render) for persistent data storage.
 
 ---
 
